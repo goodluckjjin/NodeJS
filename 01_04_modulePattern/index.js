@@ -1,0 +1,15 @@
+console.log('******************** 1 ********************')
+const myvar = require('./myvar')
+
+console.log(myvar)
+// console.log(myvar.a)
+console.log(myvar.b)
+console.log(Boolean("I'm b" === myvar.b))
+console.log(typeof myvar)
+console.log(typeof myvar.b)
+
+console.log('******************** 2 ********************')
+const Myvar = require('./myvar')
+const setVar = new Myvar()
+console.log(setVar.name)
+console.log(setVar.age)

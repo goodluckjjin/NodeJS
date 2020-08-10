@@ -1,0 +1,17 @@
+{
+  "name": "05.-npm",
+  "version": "1.0.0",
+  "description": "node online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "author": "Jieun Jeong",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid4": "^2.0.2"
+  }
+}
