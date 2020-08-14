@@ -29,10 +29,19 @@ router.get("/products", (req, res) => {
   //app.js에세팅된 template 이후부터 파일 위치를 지정해준다.
   res.render("admin/products.html", {
     //products.html의 message에 뿌려준다
-    message: `<h1>태그가 출력됩니다.</h1>`,
+    message: `<h1>태그가 출력됩니다.</h1>`, //message란 변수를 템플릿으로
     online: "express",
   });
 });
+
+router.get("/products/write", (req, res) => {
+  res.render("admin/wirte.html");
+});
+
+router.post("/products/write", (req, res) => {
+  res.send(req.body.price);
+});
+
 module.exports = router;
 
 //GET /admin => admin 이후 url

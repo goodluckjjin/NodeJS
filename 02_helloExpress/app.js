@@ -1,6 +1,7 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
 const logger = require("morgan");
+const bodyParser = require("body-parser"); //express 내장 모듈
 
 const admin = require("./routes/admin");
 const contacts = require("./routes/contacts");
@@ -20,6 +21,11 @@ nunjucks.configure("template", {
 
 //미들웨어 셋팅
 app.use(logger("dev"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  req.body = {};
+});
 
 app.get("/", (req, res) => {
   res.send("express start");
@@ -42,3 +48,10 @@ app.listen(port, () => {
 //cannot get /fastcampus 는 url, routing을 추가하지 않았기 때문에
 
 //get요청은 내가 url에 쳤을 때 나오는 것
+
+//REST API
+// GET /user => 사용자정보
+// POST /user => 사용자추가
+// GET /user/(ID) => 한명만 볼 떄
+// PUT /users/(ID) => 한명 수정하기
+// DELETE /users/(ID) => 한명 삭제하기
