@@ -23,6 +23,9 @@ nunjucks.configure("template", {
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use("/static", express.static("uploads"));
+
 app.use((req, res, next) => {
   req.body = {};
 });
@@ -55,3 +58,5 @@ app.listen(port, () => {
 // GET /user/(ID) => 한명만 볼 떄
 // PUT /users/(ID) => 한명 수정하기
 // DELETE /users/(ID) => 한명 삭제하기
+
+// 해당폴더 내에 있는 파일들은 url로 접근하면 전체 다 보이도록 하는 것이 정적파일 셋팅
