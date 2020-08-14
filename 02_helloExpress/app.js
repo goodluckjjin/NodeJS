@@ -1,5 +1,6 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
+const logger = require("morgan");
 
 const admin = require("./routes/admin");
 const contacts = require("./routes/contacts");
@@ -7,7 +8,7 @@ const contacts = require("./routes/contacts");
 const app = express();
 const port = 3000;
 
-//기본 세팅
+//기본 셋팅
 // autoescape: true => js가 그대로 노출됨, 사용자가 게시글을 작성할 떄 alert와 같이 tag 사용을 하여 사용자 공격을 할 수 있는 경우들을 무효화시키기 위해 태그 걸러줌 (false면 태그대로 허용)
 // autoescape: true인 상태에서 내가 뿌려줘야 하는 경우는
 // products {{ message }} 를 아래와 같이 변경한다.
@@ -17,12 +18,21 @@ nunjucks.configure("template", {
   express: app,
 });
 
+//미들웨어 셋팅
+app.use(logger("dev"));
+
 app.get("/", (req, res) => {
   res.send("express start");
 });
 
+//admin에 한번에 적용하는 미들웨어
+function vipMiddleware(req, res, next) {
+  console.log("최우선 미들웨어");
+  next();
+}
+
 //admin까지는 admin파일을 참고해라
-app.use("/admin", admin);
+app.use("/admin", vipMiddleware, admin);
 app.use("/contacts", contacts);
 
 app.listen(port, () => {
