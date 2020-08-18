@@ -1,15 +1,15 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-function testMiddleware(req, res, next) {
-  console.log("첫번째 미들웨어");
-  next();
-}
+// function testMiddleware(req, res, next) {
+//   console.log('첫번째 미들웨어')
+//   next()
+// }
 
-function testMiddleware2(req, res, next) {
-  console.log("두번째 미들웨어");
-  next();
-}
+// function testMiddleware2(req, res, next) {
+//   console.log('두번째 미들웨어')
+//   next()
+// }
 
 // 실제 사용 예시
 // function loginRequired (req, res, next) {
@@ -20,29 +20,32 @@ function testMiddleware2(req, res, next) {
 //   }
 // }
 
-router.get("/", testMiddleware, testMiddleware2, (req, res) => {
-  res.send("admin 이후 url");
-});
+// router.get('/', testMiddleware, testMiddleware2, (req, res) => {
+//   res.send('admin 이후 url')
+// })
+router.get('/', (req, res) => {
+  res.send('admin 이후 url')
+})
 
-router.get("/products", (req, res) => {
+router.get('/products', (_, res) => {
   // res.send("admin products 이후 url");
   //app.js에세팅된 template 이후부터 파일 위치를 지정해준다.
-  res.render("admin/products.html", {
+  res.render('admin/products.html', {
     //products.html의 message에 뿌려준다
     message: `<h1>태그가 출력됩니다.</h1>`, //message란 변수를 템플릿으로
-    online: "express",
-  });
-});
+    online: 'express',
+  })
+})
 
-router.get("/products/write", (req, res) => {
-  res.render("admin/wirte.html");
-});
+router.get('/products/write', (req, res) => {
+  res.render('admin/write.html')
+})
 
-router.post("/products/write", (req, res) => {
-  res.send(req.body.price);
-});
+router.post('/products/write', (req, res) => {
+  res.send(req.body.price)
+})
 
-module.exports = router;
+module.exports = router
 
 //GET /admin => admin 이후 url
 //GET /admin/products => admin products 이후 url
