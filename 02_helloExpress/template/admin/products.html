@@ -1,9 +1,11 @@
+
+{% set title = "관리자 리스트" %}
+
+ {% extends "layout/base.html" %} {% block
+content -%}
 <!-- products {{ message }} -->
 <!-- products {{ message | safe }} -->
 <!-- products {{ online }} -->
-
-{% set title = "관리자 리스트" %} {% extends "layout/base.html" %} {% block
-content -%}
 <table class="table table-bordered table-hover">
   <tr>
     <th>제목</th>
@@ -23,7 +25,8 @@ content -%}
 
 <a href="/admin/products/write" class="btn btn-default">작성하기</a>
 
-{% endblock %}
+
 
 <!-- title, blockcontent는 각각 base.html에 있는 곳으로 보내진다 -->
 <!-- 레이아웃을 하나 만들어 놓으면 extends 로 템플릿 상속을 처리할 수 있다 -->
+{% endblock %}
