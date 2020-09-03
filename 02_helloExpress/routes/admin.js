@@ -38,7 +38,7 @@ router.get("/products", (_, res) => {
 });
 
 router.get("/products/write", (req, res) => {
-  res.render("admin/write.html");
+  res.render("admin/products/write.html");
 });
 
 router.post("/products/write", (req, res) => {
