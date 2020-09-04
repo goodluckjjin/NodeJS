@@ -136,6 +136,9 @@ class App {
   }
 
   setViewEngine() {
+    // env로 접근
+    process.env.DB_USER;
+
     nunjucks.configure("template", {
       autoescape: true,
       express: this.app,
